@@ -20,18 +20,20 @@ If you shoot yourself and the round is blank, you gain one extra turn.
 
 ### Items
 
-Magnifying Glass: Check the round currently in the chamber
-Handsaw: Double the damage of the current round
-Cigarette: Restore one health point
-Beer: Eject one round without firing
-Handcuffs: Make the opponent skip one turn
-Inverter: Reverse the type of the current chambered round
-Adrenaline: Take an item from the opponent's item pool
-Burner Phone: Reveal one random round that is not currently in the chamber
-Expired Medicine: 50% chance to restore two health points, or lose one health point
+- Magnifying Glass: Check the round currently in the chamber
+- Handsaw: Double the damage of the current round
+- Cigarette: Restore one health point
+- Beer: Eject one round without firing
+- Handcuffs: Make the opponent skip one turn
+- Inverter: Reverse the type of the current chambered round
+- Adrenaline: Take an item from the opponent's item pool
+- Burner Phone: Reveal one random round that is not currently in the chamber
+- Expired Medicine: 50% chance to restore two health points, or lose one health point
 
 ## Disclaimer
 
 Smoking and excessive drinking are harmful to health;
+
 Stay away from gambling;
+
 But you can play Mike Klubnika's original Buckshot Roulette on Steam!
