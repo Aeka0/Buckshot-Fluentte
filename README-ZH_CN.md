@@ -1,6 +1,6 @@
 # Buckshot Fluentte
 
-一个以 WinUI 3 Fluent Design 风格呈现的现代"微软原生风格"游戏界面。
+一个以 Fluent Design 风格呈现的现代"微软原生风格"游戏界面。
 
 
 <img width="822" height="740" alt="UI" src="https://github.com/user-attachments/assets/39a918d7-123a-472a-8db8-eeea0b02b918" />
