@@ -1,6 +1,6 @@
 # Buckshot Fluentte
 
-A modern, Microsoft-native-style game interface presented with a WinUI 3 Fluent Design look.
+A modern, Microsoft-native-style game interface presented with Fluent Design look.
 
 
 <img width="822" height="740" alt="UI" src="https://github.com/user-attachments/assets/f3f8b827-291d-4a61-9620-5910a9649c24" />
