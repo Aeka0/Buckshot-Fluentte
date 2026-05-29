@@ -1,0 +1,302 @@
+<ui:FluentWindow x:Class="BuckshotFluentte.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+                 Title="Buckshot Fluentte"
+                 Width="780" Height="700"
+                 ResizeMode="NoResize"
+                 WindowBackdropType="Mica"
+                 WindowStartupLocation="CenterScreen"
+                 ExtendsContentIntoTitleBar="True"
+                 Background="Transparent">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="34"/>
+        </Grid.RowDefinitions>
+
+        <!-- ==================== Title Bar ==================== -->
+        <ui:TitleBar x:Name="TitleBarArea"
+                     Grid.Row="0"
+                     Title="Buckshot Fluentte"
+                     ShowMaximize="False"
+                     ShowMinimize="True"/>
+
+        <!-- ==================== Menu Bar ==================== -->
+        <Menu Grid.Row="1">
+            <MenuItem x:Name="MenuGameBar" Header="Game">
+                <MenuItem x:Name="MenuNewGame" Header="New Game" Click="NewGame_Click"/>
+                <MenuItem x:Name="MenuClose" Header="Close" Click="Close_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="MenuSettingsBar" Header="Settings">
+                <MenuItem x:Name="MenuLanguage" Header="Language">
+                    <MenuItem x:Name="MenuLangEn" Header="English" IsCheckable="True" IsChecked="True" Click="LangEn_Click"/>
+                    <MenuItem x:Name="MenuLangZh" Header="&#x4E2D;&#x6587;" IsCheckable="True" Click="LangZh_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="MenuTheme" Header="Theme">
+                    <MenuItem x:Name="MenuThemeSystem" Header="Follow System" IsCheckable="True" IsChecked="True" Click="ThemeSystem_Click"/>
+                    <MenuItem x:Name="MenuThemeDark" Header="Dark" IsCheckable="True" Click="ThemeDark_Click"/>
+                    <MenuItem x:Name="MenuThemeLight" Header="Light" IsCheckable="True" Click="ThemeLight_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="MenuAbout" Header="About" Click="About_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- ==================== Main Content ==================== -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ========== Left Info Panel ========== -->
+            <Grid Grid.Column="0" Margin="20,12,20,16" MinWidth="220">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Weather-style numbers: GAME / ROUND / MONEY -->
+                <StackPanel Grid.Row="0" Margin="0,4,0,16">
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                            <TextBlock x:Name="TxtGameNum"
+                                       Text="0"
+                                       FontSize="42" FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock x:Name="LblGame"
+                                       Text="GAME"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,-2,0,0"
+                                       Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                            <TextBlock x:Name="TxtRoundNum"
+                                       Text="0"
+                                       FontSize="42" FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock x:Name="LblRound"
+                                       Text="ROUND"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,-2,0,0"
+                                       Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel HorizontalAlignment="Center" Margin="0,6,0,0">
+                        <TextBlock x:Name="TxtMoneyNum"
+                                   Text="0$"
+                                   FontSize="20" FontWeight="Bold"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="LblMoney"
+                                   Text="MONEY"
+                                   FontSize="11" FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,-2,0,0"
+                                   Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Info: Charges / Loaded -->
+                <StackPanel Grid.Row="1">
+                    <TextBlock x:Name="LblCharges"
+                               Text="Charges:"
+                               FontSize="13" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                               Margin="0,0,0,2"/>
+                    <TextBlock x:Name="LblDealer"
+                               Text="Dealer:"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                               Margin="0,0,0,1"/>
+                    <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                            BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                            BorderThickness="1" CornerRadius="4" Padding="8,5"
+                            Margin="0,0,0,6">
+                        <emoji:TextBlock x:Name="TxtChargeDealer" Text="" FontSize="14" HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <TextBlock x:Name="LblPlayer"
+                               Text="Player:"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                               Margin="0,4,0,1"/>
+                    <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                            BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                            BorderThickness="1" CornerRadius="4" Padding="8,5"
+                            Margin="0,0,0,6">
+                        <emoji:TextBlock x:Name="TxtChargePlayer" Text="" FontSize="14" HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <TextBlock x:Name="LblLoaded"
+                               Text="Loaded:"
+                               FontSize="13" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                               Margin="0,6,0,2"/>
+                    <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                            BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                            BorderThickness="1" CornerRadius="4" Padding="8,5">
+                        <emoji:TextBlock x:Name="TxtLoaded" Text="" FontSize="14" HorizontalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Turn indicator -->
+                <TextBlock Grid.Row="3"
+                           x:Name="TxtTurnInfo"
+                           Text="Awaiting the game..."
+                           FontSize="14" FontWeight="SemiBold"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                           VerticalAlignment="Bottom"
+                           Margin="0,12,0,0"/>
+            </Grid>
+
+            <!-- ========== Divider 1 ========== -->
+            <Border Grid.Column="1"
+                    Width="1"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource DividerStrokeColorDefaultBrush}"
+                    Margin="0,12"/>
+
+            <!-- ========== Center Game Area ========== -->
+            <StackPanel Grid.Column="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="24,16"
+                        ClipToBounds="False">
+
+                <ui:Button x:Name="BtnTopAction"
+                        Width="76" Height="76"
+                        HorizontalAlignment="Center"
+                        Appearance="Transparent"
+                        Margin="0,4,0,8"
+                        Click="BtnTopAction_Click"
+                        MouseEnter="BtnTopAction_MouseEnter"
+                        MouseLeave="BtnTopAction_MouseLeave"/>
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="BtnSlotA1" Grid.Row="0" Grid.Column="0" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotA2" Grid.Row="0" Grid.Column="1" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotA3" Grid.Row="0" Grid.Column="2" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotA4" Grid.Row="0" Grid.Column="3" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotA5" Grid.Row="1" Grid.Column="0" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotA6" Grid.Row="1" Grid.Column="1" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotA7" Grid.Row="1" Grid.Column="2" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotA8" Grid.Row="1" Grid.Column="3" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                </Grid>
+
+                <!-- Gun button -->
+                <ui:Button x:Name="BtnCenter"
+                        Width="76" Height="76"
+                        HorizontalAlignment="Center"
+                        Margin="0,8"
+                        Click="BtnCenter_Click"
+                        MouseEnter="BtnCenter_MouseEnter"
+                        MouseLeave="BtnCenter_MouseLeave"/>
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="BtnSlotB1" Grid.Row="0" Grid.Column="0" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotB2" Grid.Row="0" Grid.Column="1" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotB3" Grid.Row="0" Grid.Column="2" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotB4" Grid.Row="0" Grid.Column="3" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotB5" Grid.Row="1" Grid.Column="0" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotB6" Grid.Row="1" Grid.Column="1" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotB7" Grid.Row="1" Grid.Column="2" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                    <Button x:Name="BtnSlotB8" Grid.Row="1" Grid.Column="3" Width="56" Height="56" FontSize="20" Margin="3" Click="BtnSlot_Click" MouseEnter="BtnSlot_MouseEnter" MouseLeave="BtnSlot_MouseLeave"/>
+                </Grid>
+
+                <ui:Button x:Name="BtnBottomAction"
+                        Width="76" Height="76"
+                        HorizontalAlignment="Center"
+                        Appearance="Transparent"
+                        Margin="0,8,0,4"
+                        Click="BtnBottomAction_Click"
+                        MouseEnter="BtnBottomAction_MouseEnter"
+                        MouseLeave="BtnBottomAction_MouseLeave"/>
+            </StackPanel>
+
+            <!-- ========== Divider 2 ========== -->
+            <Border Grid.Column="3"
+                    Width="1"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource DividerStrokeColorDefaultBrush}"
+                    Margin="0,12"/>
+
+            <!-- ========== Right Log Area ========== -->
+            <Grid Grid.Column="4" Margin="16,12,20,16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           x:Name="LblActionLog"
+                           Text="Action Log"
+                           FontSize="13" FontWeight="SemiBold"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                           Margin="0,0,0,8"/>
+
+                <TextBox x:Name="TxtLog"
+                         Grid.Row="1"
+                         Text=""
+                         IsReadOnly="True"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         TextAlignment="Left"
+                         MinWidth="180"
+                         VerticalAlignment="Stretch"
+                         VerticalScrollBarVisibility="Auto"/>
+            </Grid>
+        </Grid>
+
+        <!-- ==================== Bottom Hint Bar ==================== -->
+        <Border Grid.Row="3"
+                Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
+                BorderBrush="{DynamicResource DividerStrokeColorDefaultBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="16,8">
+            <TextBlock x:Name="TxtHint"
+                       Text=""
+                       TextTrimming="CharacterEllipsis"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                       FontSize="13"/>
+        </Border>
+    </Grid>
+</ui:FluentWindow>

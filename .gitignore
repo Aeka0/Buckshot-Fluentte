@@ -1,0 +1,59 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+[Pp]ublish/
+
+# Visual Studio user/local state
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Rider / JetBrains local state
+.idea/
+*.sln.iml
+
+# VS Code local state
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts-obj/
+
+# Test and coverage output
+[Tt]est[Rr]esult*/
+[Tt]est[Rr]esults/
+[Cc]overage[Rr]esults/
+coverage/
+*.coverage
+*.coveragexml
+*.trx
+
+# Diagnostics and local logs
+*.log
+*.binlog
+*.crash
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Local/generated project artifacts
+extracted.manifest
+
+# Source audio assets; runtime uses embedded sounds/*.ogg
+RawAssets/
